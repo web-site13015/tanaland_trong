@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LZ GANG - Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anta&family=Roboto+Slab:wght@100..900&display=swap');
+        body {
+            font-family: 'Anta', sans-serif;
+        }
+        /* Si vous voulez utiliser Roboto Slab pour certains éléments */
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+        }
+
+    img {
+        max-width: 100%; /* Limite la largeur de l'image à la taille de son conteneur */
+        height: auto; /* Permet à l'image de conserver ses proportions originales */
+        display: block; /* Assure que l'image ne se superpose pas aux éléments adjacents */
+        margin: auto; /* Centre l'image horizontalement */
+    }
+
+        
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    position: relative;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+    color: #fff;
+}
+
+
+   .header {
+    height: 300px; /* Ajustez la hauteur selon vos besoins */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+     
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+        .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.products {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.product {
+    display: inline-block;
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Styles pour le bouton d'interrogation */
+.interrogation-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 50%; /* Rendre le bouton rond */
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 999; /* Pour être au-dessus du reste du contenu */
+    transition: background-color 0.3s; /* Animation de transition */
+}
+
+.interrogation-button:hover {
+    background-color: #2980b9; /* Changement de couleur au survol */
+}
+
+/* Styles pour le bouton de menu */
+.menu-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-icon {
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    margin: 6px 0;
+}
+
+/* Styles pour la boîte de dialogue du code d'accès */
+.access-code-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Pour être au-dessus du reste du contenu */
+}
+
+.access-code-dialog input {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Styles pour le formulaire d'abonnement */
+.abonnement-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Pour être au-dessus du reste du contenu */
+}
+
+.abonnement-form input {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.abonnement-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #2ecc71;
+    border-radius: 50%; /* Rendre le bouton rond */
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 999; /* Pour être au-dessus du reste du contenu */
+    transition: background-color 0.3s; /* Animation de transition */
+}
+
+.abonnement-button:hover {
+    background-color: #27ae60; /* Changement de couleur au survol */
+}
+
+/* Styles pour le carré de modification */
+.modification-square {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; /* Caché par défaut */
+}
+
+/* Styles pour les boutons de modification */
+.modification-button {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px 20px; /* Ajout de padding pour un meilleur aspect */
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Animation de transition */
+}
+
+.modification-button:hover {
+    background-color: #2980b9; /* Changement de couleur au survol */
+}
+
+        /* Les styles sont inchangés */
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+/* Style pour le texte à l'intérieur du carré */
+        #about-content {
+            font-size: 14px;
+        }  
+        .a2a_button_snapchat {
+            background-color: yellow;
+        }
+        /* Styles pour la section d'accueil */
+        
+
+
+        .accueil {
+    background-image: url("https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/183d0bf0-b8a6-e0d3-5bbf-6ac87dc0f8dc.jpeg"); /* Remplacez "chemin/vers/votre/image.jpg" par le chemin de votre image */
+    background-size: cover; /* Pour que l'image remplisse l'ensemble de la section */
+    background-position: center; /* Pour centrer l'image dans la section */
+    color: white; /* Couleur du texte pour une meilleure lisibilité sur l'image */
+    text-align: center; /* Pour centrer le contenu textuel */
+    padding: 100px 0; /* Ajustez le rembourrage selon vos préférences */
+}
+
+
+        .accueil h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .accueil p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Styles pour les boutons d'action */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #FF5733;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 20px;
+            margin-right: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #FF5733; /* Changement de couleur au survol */
+        }
+        
+
+
+
+.carousel {
+    display: flex;
+    overflow-x: auto; /* Permet le défilement horizontal */
+    scroll-snap-type: x mandatory; /* Force le défilement d'une image à la fois */
+    scroll-behavior: smooth; /* Ajoute un défilement fluide */
+    width: 100%;
+    height: 150px; /* Hauteur de votre choix */
+    margin: 0 auto; /* Centre le carousel */
+    animation: scroll 5s infinite linear; /* Défilement automatique */
+}
+
+.item {
+    flex: 0 0 auto; /* Empêche le redimensionnement des éléments */
+    scroll-snap-align: start; /* Aligne chaque image sur le début de la fenêtre d'affichage */
+    margin-right: 10px; /* Marge entre chaque image */
+    min-width: 200px; /* Largeur minimale pour afficher l'image */
+    height: 100px; /* Hauteur de votre choix */
+    background-size: cover; /* Redimensionne l'image pour couvrir toute la zone */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+}
+
+/* Animation pour le défilement automatique */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+   </style>
+</head>
+<body>
+<!-- Section d'accueil -->
+<section class="accueil">
+    <h2 style="color: black;">Bienvenue chez.   LZ GAnG !</h2>
+
+    <p style="color: black;">Découvrez nos produits de qualité et profitez d'une expérience d'achat exceptionnelle.</p>
+
+    <a href="#produits" class="cta-button">Découvrir nos produits</a>
+</section>
+</br>
+<div class="carousel">
+        <div class="item" style="background-image: url('https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/744b6860-cdec-d51e-8730-acdd9a95d8f3.jpg');"></div>
+        <div class="item" style="background-image: url('https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/eb78b0ae-06cf-777e-5877-6876a6ce3c2b.jpeg');"></div>
+      <div class="item" style="background-image: url('https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/744b6860-cdec-d51e-8730-acdd9a95d8f3.jpg');"></div>
+
+        <!-- Ajoutez plus d'éléments avec la classe "item" pour plus d'images -->
+</div>
+    
+
+    
+<!-- Image horizontale -->
+    <!-- Vos produits existants -->
+    <section id="produits" class="products">
+        <!-- Vos produits existants -->
+  <img id="imagePrincipale1" src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/eb78b0ae-06cf-777e-5877-6876a6ce3c2b.jpeg" alt="Réfrigérateur">
+            <h2 style="font-size: 24px; color: #FF5733; text-decoration: underline;">BONBONNE</h2>
+            <p id="descriptionProduit2" style="font-style: italic; color: #333; margin-bottom: 10px;">100 % made in France</p>
+            <p id="prixProduit1" style="font-weight: bold; color: #FF5733; margin-bottom: 10px;">Prix: 90€</p>
+            <a href="tel:+07 44 89 27 82" style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: white; text-decoration: none; border-radius: 5px;">Acheter</a>
+            <p style="font-style: italic;">Maintenant</p>
+    </div>
+    
+        
+        <div class="product">
+            <img id="imagePrincipale2" src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/07d8d2e1-0b51-819c-a38a-473998039de2.jpeg" alt="Lave-linge">
+            <h2 style="font-size: 24px; color: #FF5733; text-decoration: underline;">OCB Slim</h2>
+            <p id="descriptionProduit2" style="font-style: italic; color: #333; margin-bottom: 10px;">100 % made in France</p>
+            <p id="prixProduit1" style="font-weight: bold; color: #FF5733; margin-bottom: 10px;">Prix: 30€</p>
+            <a href="tel:+07 44 89 27 82" style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: white; text-decoration: none; border-radius: 5px;">Acheter</a>
+            <p style="font-style: italic;">Maintenant</p>
+        </div>
+
+        
+        <div class="product">
+            <img id="imagePrincipale3" src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/63cfe854-c0b0-8b8f-0a88-57814b6cd354.jpeg" alt="Cuisinière">
+            <h2 style="font-size: 24px; color: #FF5733; text-decoration: underline;">OCB Slim</h2>
+            <p id="descriptionProduit2" style="font-style: italic; color: #333; margin-bottom: 10px;">100 % made in France</p>
+            <p id="prixProduit1" style="font-weight: bold; color: #FF5733; margin-bottom: 10px;">Prix: 30€</p>
+            <a href="tel:+07 44 89 27 82" style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: white; text-decoration: none; border-radius: 5px;">Acheter</a>
+            <p style="font-style: italic;">Maintenant</p>
+        </div>
+        <div class="product">
+            <img id="imagePrincipale4" src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/104a86e7-5a84-12d0-ba7f-f51846c9e53b.jpeg" alt="Four">            
+        </div>
+
+
+<div class="product">           
+            <img id="imagePrincipale1" src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/e9ad1119-09db-c86b-0b37-3ec7f0406883.jpg" alt="Réfrigérateur">
+            <h2 style="font-size: 24px; color: #FF5733; text-decoration: underline;"> Briquet BIC </h2>
+            <p id="descriptionProduit2" style="font-style: italic; color: #333; margin-bottom: 10px;">100 % made in France</p>
+            <p id="prixProduit1" style="font-weight: bold; color: #FF5733; margin-bottom: 10px;">Prix: 29€</p>
+            <a href="tel:+07 44 89 27 82" style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: white; text-decoration: none; border-radius: 5px;">Acheter</a>
+            <p style="font-style: italic;">Maintenant</p>
+            
+</div>
+
+
+ <div class="product">           
+            <img id="imagePrincipale1" src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/e69b8122-9a4f-2541-2102-64c88397c3ff.jpg" alt="Réfrigérateur">
+            <h2 style="font-size: 24px; color: #FF5733; text-decoration: underline;">VIP Tik Tok ventouse </h2>
+            <p id="descriptionProduit2" style="font-style: italic; color: #333; margin-bottom: 10px;">100 % made in France</p>
+            <p id="prixProduit1" style="font-weight: bold; color: #FF5733; margin-bottom: 10px;">Prix: 30€</p>
+            <a href="tel:+07 44 89 27 82" style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: white; text-decoration: none; border-radius: 5px;">Acheter</a>
+            <p style="font-style: italic;">Maintenant</p>
+            
+ </div>       
+        
+        <div class="product">
+            <div style="position: relative; display: inline-block;">
+              <img id="imagePrincipale5" src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/744b6860-cdec-d51e-8730-acdd9a95d8f3.jpg" alt="Micro-ondes" style="max-width: 100%;">
+              <div style="position: absolute; top: 5px; left: 5px; background-color: green; color: white; padding: 5px; border-radius: 5px;">
+                <span style="font-weight: bold;"> Non disponible </span>
+              </div>
+              <div style="position: absolute; bottom: 5px; left: 5px; background-color: rgba(0, 0, 0, 0.5); color: white; padding: 5px;">
+                pas disponible après Ramadan
+              </div>
+            </div>
+            <h2 style="font-size: 24px; color: #FF5733; text-decoration: underline;">BONBONNE crème de luxe </h2>
+            <p id="descriptionProduit2" style="font-style: italic; color: #333; margin-bottom: 10px;">100 % made in France</p>
+            <p id="prixProduit1" style="font-weight: bold; color: #FF5733; margin-bottom: 10px;">Prix : 20€</p>
+            <a href="tel:+07 44 89 27 82" style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: white; text-decoration: none; border-radius: 5px;">Acheter</a>
+        </div>
+    </section>
+
+    <!-- Votre section de contact existante -->
+    <section id="contact">
+        <!-- Votre section de contact existante -->
+    </section>
+
+
+  
+
+
+    <footer style="background-color: #3498db; color: #fff;">
+    <p>&copy; 2024 LZ GANG. Tous droits réservés.</p>
+    
+    <!-- Ajout des contacts -->
+    <div>
+        <h3>Contactez-nous</h3>
+        <ul>
+            <li><strong>Téléphone:</strong> +07 44 89 27 82</li>
+            <li><strong>Email:</strong> contact@Lzgang.com</li>
+            <li><strong>Adresse:</strong> traversedes rosier Marseille 13014. </li>
+            <!-- Ajoutez d'autres moyens de contact si nécessaire -->
+        </ul>
+    </div>
+</footer>
+
+
+<div id="social-sharing">
+  <div id="social-sharing" class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="left:0px; top:150px;">
+    <a class="a2a_button_snapchat"></a>
+    <a class="a2a_button_facebook"></a>
+    <a class="a2a_button_twitter"></a>
+    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</div>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+    <script>
+  var socialSharing = document.getElementById('social-sharing');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 0) { // Si la page est défilée vers le bas
+      socialSharing.style.display = 'none'; // Masquer le code
+    } else { // Si la page est défilée vers le haut
+      socialSharing.style.display = 'block'; // Afficher le code
+    }
+  });
+    </script>
+    
+    <!-- Bouton d'interrogation -->
+    <button class="interrogation-button" onclick="toggleDialog()">?</button>
+
+    <!-- Bouton de menu -->
+    <div id="menuButton" class="menu-button" onclick="toggleMenu()">
+        <div class="menu-icon"></div>
+        <div class="menu-icon"></div>
+        <div class="menu-icon"></div>
+    </div>
+
+    <!-- Boîte de dialogue du code d'accès -->
+    <div id="accessCodeDialog" class="hidden access-code-dialog">
+        <h2> Accès partenariat </h2>
+        <input type="password" id="accessCodeInput" placeholder="Code d'accès"><br>
+        <button onclick="verifierCode()">Valider</button>
+    </div>
+
+    <!-- Bouton "S'abonner" -->
+    <button class="abonnement-button" onclick="toggleAbonnement()">S'abonner</button>
+
+    <!-- Formulaire d'abonnement -->
+    <div id="abonnementForm" class="hidden abonnement-form">
+        <h2>S'abonner</h2>
+        <form>
+           <input type="email" placeholder="Email" id="emailInput" required><br>
+            <input type="tel" placeholder="Numéro de téléphone" id="telephoneInput" required><br>
+            <input type="password" placeholder="Mot de passe" id="passwordInput" required><br>
+            <button type="button" onclick="sabonner()">S'abonner</button>
+        </form>
+    </div>
+    <!-- Carré de modification -->
+    <div id="modificationSquare" class="modification-square" style="display: none;">
+        <h2>Menu de Modification</h2>
+        <button class="modification-button" onclick="modifierImagePrincipale()">Modifier l'image principale</button>
+        <button class="modification-button" onclick="modifierDescription()">Modifier la description</button>
+        <button class="modification-button" onclick="modifierPrix()">Modifier le prix</button>
+        <button class="modification-button" onclick="toggleMenu()">Fermer</button>
+    </div>
+    <script>
+        var accessCodeEntered = false;
+
+        // Fonction pour afficher ou cacher la boîte de dialogue du code d'accès
+        function toggleDialog() {
+            var dialog = document.getElementById("accessCodeDialog");
+            if (dialog.classList.contains("hidden")) {
+                dialog.classList.remove("hidden");
+            } else {
+                dialog.classList.add("hidden");
+            }
+        }
+
+        // Fonction pour vérifier le code d'accès
+        function verifierCode() {
+            var code = document.getElementById("accessCodeInput").value;
+            if (code === "15") { // Code d'accès prédéfini (à remplacer par votre propre code)
+                accessCodeEntered = true;
+                document.getElementById("menuButton").classList.remove("menu-button-disabled");
+                // Afficher le carré de modification si le code est correct
+                document.getElementById("modificationSquare").style.display = "block";
+                // Cacher la boîte de dialogue du code d'accès
+                document.getElementById("accessCodeDialog").classList.add("hidden");
+            } else {
+                alert("Code incorrect. Veuillez réessayer.");
+            }
+        }
+
+        // Fonction pour afficher ou cacher le formulaire d'abonnement
+        function toggleAbonnement() {
+            var form = document.getElementById("abonnementForm");
+            if (form.classList.contains("hidden")) {
+                form.classList.remove("hidden");
+            } else {
+                form.classList.add("hidden");
+            }
+        }
+
+        // Fonction pour traiter l'abonnement
+        function sabonner() {
+            // Récupérer les valeurs des champs du formulaire
+            var email = document.getElementById("emailInput").value;
+            var telephone = document.getElementById("telephoneInput").value;
+            var motDePasse = document.getElementById("passwordInput").value;
+            
+            // Traitement de l'abonnement (vous pouvez remplacer cette partie par votre propre logique d'abonnement)
+            // Par exemple, vous pouvez utiliser Firebase pour gérer l'authentification et l'inscription des utilisateurs.
+            // Voici un exemple d'utilisation de Firebase pour l'authentification :
+            firebase.auth().createUserWithEmailAndPassword(email, motDePasse)
+                .then((userCredential) => {
+                    // Inscription réussie, vous pouvez rediriger l'utilisateur ou effectuer d'autres actions
+                    alert("Inscription réussie !");
+                    // Fermer le formulaire d'abonnement
+                    toggleAbonnement();
+                })
+                .catch((error) => {
+                    // Gérer les erreurs d'inscription (par exemple, afficher un message d'erreur à l'utilisateur)
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        }
+
+        // Fonction pour modifier l'image principale
+        function modifierImagePrincipale() {
+            if (!accessCodeEntered) {
+                return; // Ne rien faire si le code d'accès n'a pas été entré
+            }
+
+            var nouvelleImage = prompt("Entrez l'URL de la nouvelle image :");
+            if (nouvelleImage !== null) {
+                // Remplacer l'attribut src de l'élément img avec la nouvelle image
+                var product = prompt("Entrez le numéro de produit (1 à 5) :");
+                if (product >= 1 && product <= 5) {
+                    document.getElementById("imagePrincipale" + product).src = nouvelleImage;
+                } else {
+                    alert("Numéro de produit invalide.");
+                }
+            }
+        }
+
+        // Fonction pour modifier la description du produit
+        function modifierDescription() {
+            if (!accessCodeEntered) {
+                return; // Ne rien faire si le code d'accès n'a pas été entré
+            }
+
+            var nouvelleDescription = prompt("Entrez la nouvelle description :");
+            if (nouvelleDescription !== null) {
+                // Remplacer le contenu de l'élément p avec la nouvelle description
+                var product = prompt("Entrez le numéro de produit (1 à 5) :");
+                if (product >= 1 && product <= 5) {
+                    document.getElementById("descriptionProduit" + product).textContent = nouvelleDescription;
+                } else {
+                    alert("Numéro de produit invalide.");
+                }
+            }
+        }
+
+        // Fonction pour modifier le prix du produit
+        function modifierPrix() {
+            if (!accessCodeEntered) {
+                return; // Ne rien faire si le code d'accès n'a pas été entré
+            }
+
+            var nouveauPrix = prompt("Entrez le nouveau prix :");
+            if (nouveauPrix !== null) {
+                // Remplacer le contenu de l'élément p avec le nouveau prix
+                var product = prompt("Entrez le numéro de produit (1 à 5) :");
+                if (product >= 1 && product <= 5) {
+                    document.getElementById("prixProduit" + product).textContent = "Prix: " + nouveauPrix + "€";
+                } else {
+                    alert("Numéro de produit invalide.");
+                }
+            }
+        }
+
+        // Fonction pour afficher ou cacher le carré de modification
+        function toggleMenu() {
+            if (accessCodeEntered) {
+                var square = document.getElementById("modificationSquare");
+                if (square.style.display === "block") {
+                    square.style.display = "none";
+                } else {
+                    square.style.display = "block";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
