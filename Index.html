@@ -3,358 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tana Land - Fil d'actualité</title>
-    
-    <!-- Lien vers Font Awesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Brochettes Street Shop</title>
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1e1e2f;
-            color: white;
-            text-align: center;
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #6200ea;
+        padding: 20px;
+        text-align: center;
+        color: white;
+    }
+
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5em;
+        margin: 0;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    p, button, select, input {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1em;
+    }
+
+    .products {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 20px; /* Espacement entre les produits */
+    }
+
+    .product {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 280px;
+        text-align: left;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        transition: transform 0.3s;
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+    }
+
+    .product img {
+        max-width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Description du produit */
+    .product p {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+        color: #555;
+    }
+
+    /* Sélecteurs d'options */
+    .product label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .product select, .product input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+    }
+
+    /* Boutons */
+    button {
+        background-color: #6200ea;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+        width: 100%; /* Prend toute la largeur */
+        font-size: 1.1em;
+    }
+
+    button:hover {
+        background-color: #3700b3;
+    }
+
+    /* Panier */
+    .cart {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+        position: fixed;
+        right: 20px;
+        top: 100px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: none; /* Cacher le panier par défaut */
+        z-index: 1000;
+    }
+
+    .cart h2 {
+        margin: 0 0 10px;
+    }
+
+    .cart-items {
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .total {
+        font-weight: bold;
+    }
+
+    .cart-toggle {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        background-color: #6200ea;
+        color: white;
+        border-radius: 50%;
+        padding: 15px;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    /* Responsivité */
+    @media (max-width: 600px) {
+        .products {
+            flex-direction: column;
+            align-items: center;
         }
 
-        h1 {
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
-            color: white;
-            padding: 15px;
-            text-transform: uppercase;
-        }
-
-        .menu-btn {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 30px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            color: white;
-        }
-
-        .menu {
-            position: fixed;
-            left: -300px;
-            top: 0;
-            width: 250px;
-            height: 100%;
-            background: #2c2c3a;
-            padding: 20px;
-            transition: left 0.3s;
-            z-index: 1000; /* Ajouter un z-index élevé pour que le menu soit au-dessus des autres éléments */
-        }
-
-        .menu.open {
-            left: 0;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        input, textarea {
-            width: 90%;
-            padding: 8px;
-            margin: 5px 0;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            background: #ff8a00;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #e52e71;
-        }
-
-        #news-container {
-            max-width: 900px;
-            margin: auto;
-            background: #2c2c3a;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(255, 138, 0, 0.3);
-            text-align: left;
-        }
-
-        .news-item {
-            background: #3a3a4a;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-        }
-
-        .news-item img, .news-item video {
-            max-width: 100%;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        /* Fenêtre modale pour l'alerte */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow: auto;
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #2c2c3a;
-            margin: 5% auto;
-            padding: 20px;
-            border-radius: 10px;
+        .product {
             width: 80%;
-            text-align: center;
         }
+    }
 
-        .close {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    /* Formulaire de livraison */
+    .delivery-form {
+        display: none;
+        margin-top: 15px;
+    }
 
-        .close:hover,
-        .close:focus {
-            color: #ff8a00;
-        }
-
-        .feedback {
-            font-size: 20px;
-            margin-top: 10px;
-        }
-
-        .feedback button {
-            margin: 5px;
-            font-size: 20px;
-        }
-
-        .choice-buttons {
-            margin-top: 20px;
-        }
-
-        .file-input-container {
-            margin-top: 15px;
-        }
-
-        .file-input-container button {
-            margin: 5px;
-        }
-
-        /* Widget RSS */
-        #rss-widget-container {
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            position: relative;
-            background: #2c2c3a;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        .feedback-buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-    </style>
+    .delivery-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
 </head>
 <body>
+    <header>
+        <h1>Brochettes Street Shop 🍢</h1>
+        <p>Commandez vos brochettes et boissons fraîches!</p>
+    </header>
+    
+    <main>
+        <section class="products">
+            <!-- Samoussa -->
+            <div class="product">
+                <img src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/886124cc-a97b-7067-e285-0b32d38b320b.jpeg" alt="Samoussa" />
+                <h2>Samoussa 🥟</h2>
+                <p>5,50 € les 6 pièces</p>
+                <label for="samoussa-option">Choisissez un supplément :</label>
+                <select id="samoussa-option">
+                    <option value="0">Aucun</option>
+                    <option value="2">Supplément Manioc 🍠 (+2 €)</option>
+                    <option value="2">Supplément Banane 🍌 (+2 €)</option>
+                    <option value="2">Salade Papaye 🥗 (+2 €)</option>
+                    <option value="2">Salade Mangue 🥭 (+2 €)</option>
+                </select>
+                <button class="add-to-cart" data-product="Samoussa" data-price="5.50" data-quantity="1">Ajouter au Panier</button>
+            </div>
 
-    <h1>🔥 Tana Land - Fil d'actualité 🔥</h1>
+            <!-- Brochette -->
+            <div class="product">
+                <img src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/b4a00c7f-0423-80b4-0fe0-ebaab753db74.jpeg" alt="Brochette de Poulet" />
+                <h2>Brochette 🍢</h2>
+                <p>Menu à 6,50 €</p>
+                <label for="brochette-type">Type de brochette :</label>
+                <select id="brochette-type">
+                    <option value="">Choisissez...</option>
+                    <option value="Poulet">Brochette de Poulet 🍗</option>
+                    <option value="Viande">Brochette de Viande Halal 🥩</option>
+                    <option value="Crevettes">Brochette de Crevettes 🦐</option>
+                </select>
+                <label for="brochette-option">Choisissez un supplément :</label>
+<select id="brochette-option">
+    <option value="0">Aucun</option>
+    <option value="2.50">Riz 🍚 (+2,50 €)</option>
+    <option value="2.50">Frites 🍟 (+2,50 €)</option>
+    <option value="2.50">Manioc 🍠 (+2,50 €)</option>
+    <option value="2.50">Banane 🍌 (+2,50 €)</option>
+</select>
 
-    <!-- Bouton du menu -->
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+                <label for="brochette-canette">Ajoutez une boisson pour 1 € :</label>
+                <select id="brochette-canette">
+                    <option value="0">Aucune</option>
+                    <option value="1">Coca 🥤 (+1 €)</option>
+                    <option value="1">Sprite 🥤 (+1 €)</option>
+                    <option value="1">Fanta 🥤 (+1 €)</option>
+                </select>
 
-    <!-- Menu latéral -->
-    <div class="menu" id="menu">
-        <button class="menu-btn close" onclick="toggleMenu()">✖</button>
-        <h2>👤 Connexion</h2>
-        <input type="text" id="username" placeholder="Nom d'utilisateur" required>
-        <button onclick="login()">Se connecter</button>
+                <button class="add-to-cart" data-product="Brochette" data-price="6.50" data-quantity="1" id="add-brochette">Ajouter au Panier</button>
+            </div>
+
+            <!-- Boissons -->
+            <div class="product">
+                <img src="https://mcusercontent.com/40a9f1a77d46874eba2309d88/images/d9e3f57b-2ad5-6a1a-df84-57c2d2e0a45d.jpeg" alt="Boissons Canette" />
+                <h2>Boissons Canette 🥤</h2>
+                <p>Choisissez parmi notre sélection de boissons à 2 €.</p>
+                <label for="drink-select">Choisissez une boisson :</label>
+                <select id="drink-select">
+                    <option value="">-- Sélectionner --</option>
+                    <option value="2">Coca 🥤</option>
+                    <option value="2">Sprite 🥤</option>
+                    <option value="2">Fanta 🥤</option>
+                </select>
+                <label for="drink-option">Ajoutez un supplément :</label>
+                <select id="drink-option">
+                    <option value="0">Aucun</option>
+                    <option value="0.50">Glaçons 🧊 (+0,50 €)</option>
+                </select>
+                <button class="add-to-cart" data-product="Boisson" data-price="2" data-quantity="1" id="add-drink">Ajouter au Panier</button>
+            </div>
+        </section>
         
-        <div id="publish-section" class="hidden">
-            <h2>📢 Publier une actualité</h2>
-            <input type="text" id="title" placeholder="Titre de l'actualité">
-            <textarea id="description" placeholder="Description de l'actualité"></textarea>
+        <aside class="cart" id="cart">
+            <h2>Panier 🛒</h2>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="total" id="total-price">Total: 0 €</div>
+            <button id="finalize-order">Finaliser la commande</button>
 
-            <div class="choice-buttons">
-                <button class="file-input-container" onclick="showImageOptions()"><i class="fas fa-image"></i> Choisir une image</button>
-                <button class="file-input-container" onclick="showVideoOptions()"><i class="fas fa-video"></i> Choisir une vidéo</button>
-            </div>
+            <!-- Formulaire de livraison -->
+            <form class="delivery-form" id="delivery-form">
+                <input type="text" id="name" placeholder="Votre nom" required>
+                <input type="text" id="phone" placeholder="Votre numéro de téléphone" required>
+                <input type="text" id="address" placeholder="Votre adresse" required>
+                <button type="submit" id="confirm-order">Confirmer la commande</button>
+            </form>
+        </aside>
 
-            <div id="image-options" class="hidden">
-                <input type="file" id="image" accept="image/*" />
-                <p>Ou prenez une photo avec la caméra :</p>
-                <input type="file" id="image-camera" accept="image/*" capture="camera" />
-            </div>
-
-            <div id="video-options" class="hidden">
-                <input type="file" id="video" accept="video/*" />
-                <p>Ou filmez avec la caméra :</p>
-                <input type="file" id="video-camera" accept="video/*" capture="camera" />
-            </div>
-
-            <button onclick="publishNews()">Publier</button>
-        </div>
-    </div>
-
-    <!-- Fenêtre modale d'alerte -->
-    <div id="alertModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <p>Connexion réussie !</p>
-        </div>
-    </div>
-
-    <!-- Conteneur de la file d'actualité -->
-    <div id="news-container">
-        <h2>🚀 Actualités</h2>
-        
-        <!-- Actualité par défaut -->
-        <div class="news-item">
-            <h3>🔥 Bienvenue sur Tana Land !</h3>
-            <p>Ceci est une actualité par défaut.</p>
-            <img src="https://mcusercontent.com/ecbcd3e0a3ef2c00dbcaefee8/images/c2f77817-7f68-e79a-2fae-b0df349226c2.jpg" alt="Image par défaut">
-            <div class="feedback-buttons">
-                <button onclick="addFeedback('👍')">👍</button>
-                <button onclick="addFeedback('🩷')">🩷</button>
-            </div>
-        </div>
-
-        <!-- Nouvelles actualités publiées -->
-        <div id="custom-news"></div>
-        
-        <!-- Widget RSS -->
-        <div id="rss-widget-container">
-            <iframe 
-                src="https://rss.app/embed/v1/wall/EfaE5udOLeF3DdzP" 
-                frameborder="0">
-            </iframe>
-        </div>
-    </div>
+        <!-- Bouton flottant pour le panier -->
+        <div class="cart-toggle" id="cart-toggle">🛒</div>
+    </main>
 
     <script>
-        let currentUser = "";
+  const cartItems = document.getElementById('cart-items');
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+const cart = document.getElementById('cart');
+const totalPriceElement = document.getElementById('total-price');
+const finalizeOrderButton = document.getElementById('finalize-order');
+const deliveryForm = document.getElementById('delivery-form');
+const cartToggleButton = document.getElementById('cart-toggle');
+let totalPrice = 0;
 
-        // Ouvrir/fermer le menu latéral
-        function toggleMenu() {
-            let menu = document.getElementById("menu");
-            menu.classList.toggle("open");
+// Désactiver la sélection de la canette au départ
+const brochetteCanette = document.getElementById('brochette-canette');
+brochetteCanette.disabled = true;
+
+// Fonction pour vérifier la sélection du menu et du supplément
+function checkMenuAndSupplement() {
+    const selectedBrochette = document.getElementById('brochette-type').value;
+    const selectedSupplement = document.getElementById('brochette-option').value;
+
+    // Activer la canette seulement si un menu et un supplément sont choisis
+    if (selectedBrochette !== "" && selectedSupplement !== "0") {
+        brochetteCanette.disabled = false;
+    } else {
+        brochetteCanette.disabled = true;
+        brochetteCanette.value = "0";  // Réinitialiser la sélection de la canette si désactivée
+    }
+}
+
+// Événements pour vérifier la sélection de menu et de supplément
+document.getElementById('brochette-type').addEventListener('change', checkMenuAndSupplement);
+document.getElementById('brochette-option').addEventListener('change', checkMenuAndSupplement);
+
+// Ajout des articles au panier
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const productName = button.getAttribute('data-product');
+        let productPrice = parseFloat(button.getAttribute('data-price'));
+        const productQuantity = parseInt(button.getAttribute('data-quantity'));
+
+        // Suppléments pour Samoussa
+        const samoussaOption = document.getElementById('samoussa-option').value;
+        if (productName === "Samoussa" && samoussaOption != "0") {
+            productPrice += parseFloat(samoussaOption); // Ajout du supplément
         }
 
-        // Simuler une connexion
-        function login() {
-            let username = document.getElementById("username").value;
-            if (username.trim() !== "") {
-                currentUser = username;
-                showModal(); // Afficher la fenêtre modale
-                setTimeout(() => {
-                    closeModal();
-                }, 2000);
-                document.getElementById("publish-section").classList.remove("hidden");
-                toggleMenu(); // Fermer le menu après la connexion
-            } else {
-                alert("Veuillez entrer un nom d'utilisateur.");
+        // Suppléments pour Brochette
+        const brochetteType = document.getElementById('brochette-type').value;
+        const brochetteOption = document.getElementById('brochette-option').value;
+        const brochetteCanetteValue = brochetteCanette.value;
+
+        if (productName === "Brochette") {
+            if (brochetteType === "") {
+                alert("Veuillez choisir un type de brochette !");
+                return; // Ne pas ajouter si aucun type n'est sélectionné
+            }
+            productPrice += parseFloat(brochetteOption); // Ajout du supplément pour la brochette
+
+            // Ajouter la canette à 1 € si sélectionnée
+            if (brochetteCanetteValue !== "0") {
+                productPrice += parseFloat(brochetteCanetteValue);
             }
         }
 
-        // Fonction pour afficher la fenêtre modale
-        function showModal() {
-            document.getElementById("alertModal").style.display = "block";
+        // Suppléments pour Boissons (indépendamment de la canette pour Brochette)
+        const drinkOption = document.getElementById('drink-option').value;
+        if (productName === "Boisson" && drinkOption != "0") {
+            productPrice += parseFloat(drinkOption); // Ajout du supplément
         }
 
-        // Fonction pour fermer la fenêtre modale
-        function closeModal() {
-            document.getElementById("alertModal").style.display = "none";
-        }
+        // Créer un nouvel élément dans le panier
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <span>${productQuantity}x ${productName} - ${productPrice.toFixed(2)} €</span>
+            <button class="remove-from-cart">❌</button>
+        `;
+        cartItems.appendChild(cartItem);
 
-        // Fonction pour afficher les options d'image
-        function showImageOptions() {
-            document.getElementById("image-options").classList.remove("hidden");
-            document.getElementById("video-options").classList.add("hidden");
-        }
+        // Mettre à jour le prix total
+        totalPrice += productPrice * productQuantity;
+        totalPriceElement.textContent = `Total: ${totalPrice.toFixed(2)} €`;
 
-        // Fonction pour afficher les options de vidéo
-        function showVideoOptions() {
-            document.getElementById("video-options").classList.remove("hidden");
-            document.getElementById("image-options").classList.add("hidden");
-        }
+        // Afficher le panier
+        cart.style.display = 'block';
+    });
+});
 
-        // Publier une nouvelle actu
-        function publishNews() {
-            if (currentUser === "") {
-                alert("Veuillez vous connecter d'abord !");
-                return;
-            }
+// Gestion de la suppression d'un article du panier
+cartItems.addEventListener('click', (event) => {
+    if (event.target.classList.contains('remove-from-cart')) {
+        const cartItem = event.target.parentElement;
+        const priceText = cartItem.textContent.split(' - ')[1];
+        const itemPrice = parseFloat(priceText.replace(' €', ''));
+        
+        totalPrice -= itemPrice; // Soustraire le prix de l'article retiré
+        totalPriceElement.textContent = `Total: ${totalPrice.toFixed(2)} €`;
+        cartItem.remove(); // Retirer l'élément du DOM
+    }
+});
 
-            let title = document.getElementById("title").value;
-            let description = document.getElementById("description").value || "Pas de description.";
+// Finaliser la commande
+finalizeOrderButton.addEventListener('click', () => {
+    if (totalPrice === 0) {
+        alert("Votre panier est vide !");
+        return;
+    }
+    deliveryForm.style.display = 'block'; // Afficher le formulaire de livraison
+});
 
-            let imageFile = document.getElementById("image").files[0] || document.getElementById("image-camera").files[0];
-            let videoFile = document.getElementById("video").files[0] || document.getElementById("video-camera").files[0];
-
-            if (title.trim() === "") {
-                alert("Le titre est obligatoire !");
-                return;
-            }
-
-            let newArticle = `
-                <div class="news-item">
-                    <h3>${currentUser} a publié :</h3>
-                    <h3>${title}</h3>
-                    <p>${description}</p>
-                    ${imageFile ? `<img src="${URL.createObjectURL(imageFile)}" alt="Image">` : ""}
-                    ${videoFile ? `<video controls><source src="${URL.createObjectURL(videoFile)}" type="video/mp4"></video>` : ""}
-                    <div class="feedback-buttons">
-                        <button onclick="addFeedback('👍')">👍</button>
-                        <button onclick="addFeedback('🩷')">🩷</button>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById("custom-news").insertAdjacentHTML("afterbegin", newArticle);
-            document.getElementById("title").value = "";
-            document.getElementById("description").value = "";
-            document.getElementById("image").value = "";
-            document.getElementById("video").value = "";
-            document.getElementById("image-camera").value = "";
-            document.getElementById("video-camera").value = "";
-
-            toggleMenu(); // Fermer le menu après publication
-        }
-
-        // Ajouter un feedback (like ou coeur)
-        function addFeedback(feedback) {
-            alert(`Feedback ajouté: ${feedback}`);
-        }
+// Afficher le panier lorsque le bouton est cliqué
+cartToggleButton.addEventListener('click', () => {
+    cart.style.display = (cart.style.display === 'block') ? 'none' : 'block';
+});
     </script>
-
 </body>
-    </html>
+                    </html>
